@@ -16,7 +16,7 @@ class BorrowService:
         book = await self.session.get(Book, borrow_data.book_id)
         if book is None:
             raise HTTPErrors.not_found('book')
-        if book.quantity == 0:
+        if book.quantity < 1:
             raise HTTPErrors.no_book_in_stock()
         user = await self.session.get(User, borrow_data.user_id)
         if user is None:
