@@ -7,17 +7,10 @@ from fastapi.responses import ORJSONResponse
 
 from src.api.v1.routers import router
 from src.core.config import settings
-from src.db.init_db import add_test_data
-from src.db.init_db import init_db
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ARG001
-    await init_db()
-    try:
-        await add_test_data()
-    except Exception as e:
-        print(e)
     yield
 
 

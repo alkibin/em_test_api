@@ -14,6 +14,13 @@ class Settings(BaseSettings):
     db_host: str = Field('localhost', env='DB_HOST')
     db_port: str = Field('5432', env='DB_PORT')
     db_password: str = Field('pass', env='DB_PASSWORD')
+    db_echo: bool = True
+
+    borrow_period: int = 21
+
+    @property
+    def database_url(self):
+        return f'postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}'
 
     model_config = SettingsConfigDict(
         env_file='.env',

@@ -9,9 +9,7 @@ class CreateAuthorSchema(BaseModel):
     birthdate: datetime
 
 
-class UpdateAuthorSchema(BaseModel):
-    title: str | None = None
-    surname: str | None = None
-    birthdate: str | None = None
+class UpdateAuthorSchema(CreateAuthorSchema):
+    pass
 
 
